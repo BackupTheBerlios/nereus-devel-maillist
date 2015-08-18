@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Re%3A%20Problem%20mit%20der%20ID%20eines%20Spiels%20und%20der%20Visualisierung.&In-Reply-To=%3C200506091641.SAA09105%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000003.html">
+   <LINK REL="Next"  HREF="000005.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Re%3A%20Problem%20mit%20der%20ID%20eines%20Spiels%20und%20der%20Visualisierung.&In-Reply-To=%3C200506091641.SAA09105%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Thu Jun  9 18:41:46 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000003.html">[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus
+</A></li>
+        <LI>Next message: <A HREF="000005.html">[Nereus-devel] Frage zum Konstruktor von Game
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4">[ date ]</a>
+              <a href="thread.html#4">[ thread ]</a>
+              <a href="subject.html#4">[ subject ]</a>
+              <a href="author.html#4">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich schieb:
+&gt;<i> Tiefe Eingriffe in den Simulator halte ich insbesondere zum derzeitigen
+</I>&gt;<i> Zeitpunkt f&#252;r keine gute Idee.
+</I>&gt;<i> 
+</I>&gt;<i> Ich w&#252;rde vorschlagen, die vorhandene Id komplett (so weit wie m&#246;glich)
+</I>&gt;<i> zu ignorieren. Sehe ich es richtig, da&#223; Ihr f&#252;r die Visualisierung nur
+</I>&gt;<i> eine Nummer (kleine ganze Zahl) ben&#246;tigt, die f&#252;r jeden Durchlauf jedes
+</I>&gt;<i> Spiels eindeutig ist und von der Klasse Game abfragbar ist? Dann erg&#228;nze
+</I>&gt;<i> ich die Klasse Game um folgende Methode:
+</I>&gt;<i> 
+</I>&gt;<i>     /**
+</I>&gt;<i>      * Liefert eine f&#252;r alle Spiele eindeutige Kennzahl des aktuellen
+</I>&gt;<i>      * Simulations-Durchlaufs des Spiels. Wenn das Spiel gerade nicht
+</I>&gt;<i>      * ausgef&#252;hrt wird, wird die Kennzahl des letzten Durchlaufs
+</I>&gt;<i>      * geliefert. Wenn das Spiel au&#223;erdem noch nicht ausgef&#252;hrt wurde,
+</I>&gt;<i>      * wird der Wert -1 geliefert.
+</I>&gt;<i>      *
+</I>&gt;<i>      * @return  Eine eindeutige Kennzahl des aktuellen oder letzten
+</I>&gt;<i>      *          Simulations-Durchlaufs des Speils.
+</I>&gt;<i>      */
+</I>&gt;<i>     public int getRunNumber() {
+</I>&gt;<i>         // Implementierung
+</I>&gt;<i>     }
+</I>
+Ich habe die Methode jetzt in der Klasse Game im branch visBienenstock
+aufgenommen und mit Revision 219 eingecheckt.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000003.html">[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus
+</A></li>
+	<LI>Next message: <A HREF="000005.html">[Nereus-devel] Frage zum Konstruktor von Game
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4">[ date ]</a>
+              <a href="thread.html#4">[ thread ]</a>
+              <a href="subject.html#4">[ subject ]</a>
+              <a href="author.html#4">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

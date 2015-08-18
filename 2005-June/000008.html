@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Fehler nach Merging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20nach%20Merging&In-Reply-To=%3C42AE2E64.4080205%40gmx.info%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000007.html">
+   <LINK REL="Next"  HREF="000009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Fehler nach Merging</H1>
+    <B>samuel at gmx.info</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20nach%20Merging&In-Reply-To=%3C42AE2E64.4080205%40gmx.info%3E"
+       TITLE="[Nereus-devel] Fehler nach Merging">samuel at gmx.info
+       </A><BR>
+    <I>Tue Jun 14 03:09:56 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000007.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+        <LI>Next message: <A HREF="000009.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+
+&gt;<i>Compilieren lassen sich danach sowohl die Version in trunk wie die
+</I>&gt;<i>Version in visBienenstock. Die erste konnte ich auch fehlerfrei
+</I>&gt;<i>ausf&#252;hren. Bei Ausf&#252;hren der Version aus visBienenstock trat jedoch
+</I>&gt;<i>folgender Fehler auf:
+</I>&gt;<i>
+</I>&gt;<i>2: TANZE: habe &#252;bermittelt Koordinate : (2 / 3) Nutzen 121.0
+</I>&gt;<i>Fehler beim Ablauf des Spiels
+</I>&gt;<i>java.lang.NullPointerException
+</I>&gt;<i>        at scenarios.bienenstock.umgebung.Karte.konvertiereBienenHash(Karte.java:344)
+</I>&gt;<i>        at scenarios.bienenstock.umgebung.Karte.visualisieren(Karte.java:874)
+</I>&gt;<i>        at scenarios.bienenstock.Scenario.simulateGame(Scenario.java:982)
+</I>&gt;<i>        at nereus.simulator.Game.run(Game.java:580)
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Der Fehler tritt nur auf, wenn der Agent &quot;SimplerKooperativerBDIAgent&quot;
+verwendet wird. Das war bei mir reproduzierbar. Ebenso fiel mir auf das
+der Fehler bei mir auch recht &#228;hnlich ist: Er tritt auf, wenn ein Agent
+in der 19-21sten Runde tanzt. Auch das ist reproduzierbar.
+
+Ich hoffe dieser Hinweis tr&#228;gt zur schnellen Erkennung der Fehlerquelle
+und ihrer Beseitigung bei.
+  Viele Gr&#252;&#223;e,
+     Samuel
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000007.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+	<LI>Next message: <A HREF="000009.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

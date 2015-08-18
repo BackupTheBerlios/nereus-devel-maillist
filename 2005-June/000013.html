@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Scripte f&#252;r die Statistik
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20%3D%3Fiso-8859-1%3FQ%3FScripte_f%3DFCr_die_Statistik%3F%3D&In-Reply-To=%3C200506141718.TAA26376%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000011.html">
+   <LINK REL="Next"  HREF="000014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Scripte f&#252;r die Statistik</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20%3D%3Fiso-8859-1%3FQ%3FScripte_f%3DFCr_die_Statistik%3F%3D&In-Reply-To=%3C200506141718.TAA26376%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Scripte f&#252;r die Statistik">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Tue Jun 14 19:18:04 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000011.html">[Nereus-devel] DurchlaufNummer-Auswahl
+</A></li>
+        <LI>Next message: <A HREF="000014.html">[Nereus-devel] Problem mit Bildern gel&#246;st
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich habe ein Script BienenstockVis.sh bzw. BienenstockVis.bat zum
+Starten der Bienenstock-Visualisierung erstellt. Es ist jetzt Teil der
+Client-Distributionsdatei. Auf der Kommandozeile ist der Name des Spiels
+und die Durchlaufnummer anzugeben (alos z.B.: BienenstockVis.sh name 1).
+
+In dem Zusammenhang habe ich den Parameter f&#252;r den Port entfernt (u.a.
+auch aus dem Konstruktor VisualisationClient). Man kann aber den Port
+als Teil vom Servernamen &#252;bergeben, das habe ich aber nicht getestet.
+Der Name vom Verzeichnis mit den Bildern wird jetzt dem Konstruktor
+BienenstockVisSteuerung &#252;bergeben, der ihn an den Konstruktor von
+BienenstockVisGui weiter gibt.
+
+Leider funktioniert das zumindest beim Script noch nicht richtig, da im
+Fenster keine Bilder angezeigt werden.
+
+Das Verzeichnis mit den Bildern habe ich aus libs nach
+scenariosconfig/bienenstock verschoben.
+
+Eugen: Du m&#252;&#223;test in registrationgui/GameParameterPanel die Zeile 863
+anpassen. Dort habe ich einen dummy-Wert eingetragen, damit sich die
+Klasse compilieren l&#228;st. In Zeile 828 wird derzeit noch eine Variable
+port definiert, die nicht mehr verwendet wird (habe ich aus dem
+Konstruktor-Aufruf in Zeile 858 entfernt).
+
+Eugen: K&#246;nntest Du bitte im Script BienenstockVis.bat in der letzten
+Zeile noch die Kommandozeilen-Parameter erg&#228;nzen. Ich wei&#223; nicht wie das
+geht. Au&#223;erdem gib bitte den Text aus, der in der vorhergehenden Zeile
+hinter echo steht (hei&#223;t das bei DOS nicht type?).
+
+Ich werde versuchen, den Fehler mit den nicht dargestellten Bildern noch
+zu finden. Wenn jemand anderes eine Idee hat, woran das liegt, ist die
+gerne willkommen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000011.html">[Nereus-devel] DurchlaufNummer-Auswahl
+</A></li>
+	<LI>Next message: <A HREF="000014.html">[Nereus-devel] Problem mit Bildern gel&#246;st
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

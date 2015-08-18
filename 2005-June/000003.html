@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20%3D%3Fiso-8859-1%3FQ%3FErg%3DE4nzung%3A_Aktualisierung_von_Nereus%3F%3D&In-Reply-To=%3C200506061341.PAA02137%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000002.html">
+   <LINK REL="Next"  HREF="000004.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20%3D%3Fiso-8859-1%3FQ%3FErg%3DE4nzung%3A_Aktualisierung_von_Nereus%3F%3D&In-Reply-To=%3C200506061341.PAA02137%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Mon Jun  6 15:41:41 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000002.html">[Nereus-devel] Aktualisierung von Nereus
+</A></li>
+        <LI>Next message: <A HREF="000004.html">[Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich schrieb:
+&gt;<i> Konkret hatten Philip und Samuel in branches/szenario_visualisierung
+</I>&gt;<i> folgende Verzeichnisse angelegt:
+</I>&gt;<i> 
+</I>&gt;<i>  * source/server/scenario/bienenstock/visualisierung/ (von Philip)
+</I>&gt;<i>    Ich schlage vor, das nach
+</I>&gt;<i>    branches/visBienenstock/source/scenarios/visualisierung/ zu
+</I>&gt;<i>    verschieden.
+</I>
+Meine obige Angabe war falsch. Ich habe jetzt in visBienenstock ein
+Verzeichnis source/scenarios/bienenstock/visualisationgui/ angelegt.
+Ich sehe es so, da&#223; dieses Verzeichnis ausschlie&#223;lich die
+Szenario-spezifische Visualisierungskomponente auf Client-Seite enth&#228;lt.
+Ich habe die Dateien aus
+szenario_visualisation/source/server/scenario/bienenstock/visualisierung/
+in das neue Verzeichnis verschoben und die package- und
+import-Anweisungen angepa&#223;t. Beim Versuch zu Compilieren habe ich
+gesehen, da&#223; alle Methoden in den Klassen VisBiene, VisBienenstock,
+VisBlume und VisFeld im Package visualisierungsUmgebung package-scoped
+waren. Das habe ich korrigiert und sie public deklariert.
+
+Das Verzeichnis
+szenario_visualisation/source/scenarios/bienenstock/visualisation/
+scheint veraltet und deshalb habe ich den Inhalt nicht kopiert.
+
+&gt;<i>  * source/client/visualisation (von Samuel)
+</I>&gt;<i>    Ich schlage vor, das nach
+</I>&gt;<i>    branches/visBienenstock/source/nereus/visualisation/client/ zu
+</I>&gt;<i>    verschieben.
+</I>
+Habe ich jetzt nach visBienenstock/source/nereus/visualisationclient/
+verschoben und dabei umbenannt. Ich sehe es so, da&#223; in diesem Verzeichnis
+die Dateien zur Visualisierung auf Client-Seite liegen, die unabh&#228;ngig
+vom Szenarion sind. Die beiden darin enthaltenen Interfaces IVisualisation
+und IVisualisationClient habe ich nach ins Package
+nereus.simulatorinterfaces verschoben. Habe alle Dateien an die neue
+Struktur angepa&#223;t.
+
+&gt;<i>  * source/server/visualisation (von Samuel)
+</I>&gt;<i>    Ich schlage vor, das nach
+</I>&gt;<i>    branches/visBienenstock/source/nereus/visualisation/server/ zu
+</I>&gt;<i>    verschieben.
+</I>
+Habe ich jetzt nach visBienenstock/source/nereus/simulator/visualisation/
+kopiert und die Klassen f&#252;r den neuen Ort angepa&#223;t. Ich sehe es so, da&#223; in
+diesem Verzeichnis die Dateien zur Visualisierung auf Server-Seite liegen,
+die unabh&#228;ngig vom Szenarion sind. Die beiden enthaltenen Interfaces
+IVisualisationServerExtern und IVisualisationServerIntern habe ich ins
+Package nereus.simulatorinterfaces verschoben. Die beiden enthaltenen
+Exceptions habe ich in das Package nereus.exceptions verschoben.
+
+Schlie&#223;lich habe ich build.xml angepa&#223;t, so da&#223; jetzt alle Dateien zur
+Visualisierung einbezogen werden.
+
+&gt;<i> Dabei w&#228;re noch zu pr&#252;fen, ob die beiden Dateien, die derzeit in
+</I>&gt;<i> branches/visBienenstock/source/nereus/visualisation/ liegen, noch
+</I>&gt;<i> gebraucht werden bzw. angepa&#223;t werden m&#252;&#223;ten.
+</I>
+Das ist weiterhin noch zu pr&#252;fen.
+
+Eugen: Hast Du dazu eine Einsch&#228;tzung?
+
+Au&#223;erdem ist insbesondere noch folgendes zu tun:
+
+ * Kommentare erg&#228;nzen bei simulatorinterfaces/IVisualisationClient und
+   simulatorinterfaces/IVisualisation
+
+ * Kommentare erg&#228;nzen bei exceptions/AuthentifizierungException und
+   exceptions/DoppeltesSpielException
+
+ * &#220;berarbeitung der Klassen in den Packages
+   visBienenstock/source/scenarios/bienenstock/visualisationgui/
+   visBienenstock/source/nereus/visualisationclient/
+   visBienenstock/source/nereus/simulator/visualisation/
+
+Samuel und Philip: Bitte gebt mir Bescheid, sobald Ihr Ergebnisse oder
+Fragen habt.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000002.html">[Nereus-devel] Aktualisierung von Nereus
+</A></li>
+	<LI>Next message: <A HREF="000004.html">[Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

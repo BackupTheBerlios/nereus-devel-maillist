@@ -1,0 +1,23 @@
+From dietmar.lippold at informatik.uni-stuttgart.de  Mon May  9 19:18:53 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Mon, 9 May 2005 19:18:53 +0200 (CEST)
+Subject: [Nereus-devel] Release 0.95
+Message-ID: <200505091718.TAA29475@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe eben die ?nderungen aus dem branch von Eugen nach trunk
+gemerged (wobei ich die Option --ignore-ancestry verwenden mu?te) und
+den neuen trunk als release 0.95 nach tags kopiert.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+

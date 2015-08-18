@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Fehler nach Merging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20nach%20Merging&In-Reply-To=%3C200506131708.TAA06698%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000006.html">
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Fehler nach Merging</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20nach%20Merging&In-Reply-To=%3C200506131708.TAA06698%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Fehler nach Merging">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Mon Jun 13 19:08:50 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000006.html">[Nereus-devel] eingebundene Visualisierung
+</A></li>
+        <LI>Next message: <A HREF="000008.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich habe eben die &#196;nderungen von Releas 160-312 aus branches/eugen nach
+trunk gemerged und diese &#196;nderung anschlie&#223;end nach visBienenstock.
+trunk und branches/eugen sollten dadurch zum Release 315 identisch sein.
+
+Compilieren lassen sich danach sowohl die Version in trunk wie die
+Version in visBienenstock. Die erste konnte ich auch fehlerfrei
+ausf&#252;hren. Bei Ausf&#252;hren der Version aus visBienenstock trat jedoch
+folgender Fehler auf:
+
+2: TANZE: habe &#252;bermittelt Koordinate : (2 / 3) Nutzen 121.0
+Fehler beim Ablauf des Spiels
+java.lang.NullPointerException
+        at scenarios.bienenstock.umgebung.Karte.konvertiereBienenHash(Karte.java:344)
+        at scenarios.bienenstock.umgebung.Karte.visualisieren(Karte.java:874)
+        at scenarios.bienenstock.Scenario.simulateGame(Scenario.java:982)
+        at nereus.simulator.Game.run(Game.java:580)
+
+Einzelne &#196;nderungen an Karte.java m&#252;ssen wohl inkompatibel gewesen sein.
+Ge&#228;ndert wurde diese Klasse in branches/visBienenstock durch Samuel von
+Release 211 nach 212 und in branches/eugen durch Eugen von Release 186
+nach 187, von Release 220 nach 221 und von Release 312 nach 313. Die
+&#196;nderungen von Samuel waren eigentlich eher geringf&#252;gig (zu sehen durch
+einen Vergleich der Version in trunk und der jetzigen version in
+branches/visBienenstock).
+
+Eugen: K&#246;nntest Du den Fehler bitte mal genauer untersuchen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000006.html">[Nereus-devel] eingebundene Visualisierung
+</A></li>
+	<LI>Next message: <A HREF="000008.html">[Nereus-devel] Fehler nach Merging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

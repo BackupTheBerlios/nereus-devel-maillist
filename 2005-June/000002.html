@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Aktualisierung von Nereus
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Aktualisierung%20von%20Nereus&In-Reply-To=%3C200506051618.SAA14408%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Aktualisierung von Nereus</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Aktualisierung%20von%20Nereus&In-Reply-To=%3C200506051618.SAA14408%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Aktualisierung von Nereus">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Sun Jun  5 18:18:12 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000003.html">[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich habe heute die &#196;nderungen aus dem branch von Eugen bis
+einschlie&#223;lich Version 151 in den trunk gemerged. Ich habe die Version
+getestet und festgestellt, da&#223; sie sehr gut funktioniert. Anschlie&#223;end
+habe ich einige kleinere &#196;nderungen an Dokumentations-Dateien
+vorgenommen und diese &#196;nderungen nach branches/eugen portiert. Au&#223;erdem
+habe ich den trunk nach tags/release-0.96 und nach
+branches/visBienenstock kopiert. Zur Version 162 sollten also folgende
+Verzeichnisse gleich sein:
+
+ * trunk
+ * tags/release-0.96
+ * branches/eugen
+ * branches/visBienenstock
+
+Das letzte Verzeichnis habe ich angelegt, da
+branches/szenario_visualisierung vollkommen veraltet ist und die
+&#196;nderungen darin sich leicht in das neue Verzeichnis &#252;bertragen lassen.
+Konkret hatten Philip und Samuel in branches/szenario_visualisierung
+folgende Verzeichnisse angelegt:
+
+ * source/server/scenario/bienenstock/visualisierung/ (von Philip)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/scenarios/visualisierung/ zu
+   verschieden.
+
+ * source/client/visualisation (von Samuel)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/nereus/visualisation/client/ zu
+   verschieben.
+
+ * source/server/visualisation (von Samuel)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/nereus/visualisation/server/ zu
+   verschieben.
+
+Dabei w&#228;re noch zu pr&#252;fen, ob die beiden Dateien, die derzeit in
+branches/visBienenstock/source/nereus/visualisation/ liegen, noch
+gebraucht werden bzw. angepa&#223;t werden m&#252;&#223;ten.
+
+Wenn Ihr andere Vorschl&#228;ge habt, wo die Verzeichnisse in
+branches/visBienenstock/ liegen sollten, teilt diese bitte m&#246;glichst
+schnell mit. Teilt bitte auch mit, wenn Ihr weitere Verzeichnisse
+ben&#246;tigt. Eugen oder ich w&#252;rde die Datei build.xml morgen entsprechend
+anpassen.
+
+Au&#223;erdem waren in branches/szenario_visualisierung noch folgende
+&#196;nderungen vorgenommen worden, die per Hand in branches/visBienenstock/
+nachvollzogen werden m&#252;&#223;ten:
+
+ * In source/server/scenario/bienenstock/Scenario.java war wohl von Philip
+   ein Attribut &quot;private Visualisierung vis&quot; erg&#228;nzt worden und in den
+   beiden Methoden startphase und wartephase benutzt worden.
+
+ * In change-log.txt war von Philip eine Erg&#228;nzung vorgenommen worden.
+
+Samuel und Philip: K&#246;nntet Ihr die &#196;nderungen bitte m&#246;glichst schnell in
+branches/visBienenstock/ vornehmen. Dies w&#228;re dann nat&#252;rlich auch die Basis
+f&#252;r die weitere Arbeit an der Visualisierung.
+
+Das Compilieren der neuen Version (noch ohne die Komponenten der
+Visualisierung) ist sehr einfach (Dank an Eugen): Im Hauptverzeichnis
+mit der Datei build.xml &quot;ant allTar&quot; eingeben. Dadurch werden die beiden
+Distributions-Dateien f&#252;r Client und Server im Verzeichnis dist erzeugt
+(&quot;ant clean&quot; l&#246;scht das Verzeichnis wieder). Die kann man an geeigneter
+Stelle auspacken, ins Verzeichnis runScripts wechseln und dort die
+jeweilige Komponente starten.
+
+Zum Compilieren ist nat&#252;rlich ant erforderlich. Falls es bei Euch nicht
+installiert ist, k&#246;nnt Ihr es auf islasker benutzen (auf ischia ist
+derzeit noch eine veraltete Version).
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000003.html">[Nereus-devel] Erg&#228;nzung: Aktualisierung von Nereus
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>

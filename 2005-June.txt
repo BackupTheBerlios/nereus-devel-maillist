@@ -1,0 +1,1541 @@
+From dietmar.lippold at informatik.uni-stuttgart.de  Sun Jun  5 18:18:12 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Sun, 5 Jun 2005 18:18:12 +0200 (CEST)
+Subject: [Nereus-devel] Aktualisierung von Nereus
+Message-ID: <200506051618.SAA14408@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe heute die ?nderungen aus dem branch von Eugen bis
+einschlie?lich Version 151 in den trunk gemerged. Ich habe die Version
+getestet und festgestellt, da? sie sehr gut funktioniert. Anschlie?end
+habe ich einige kleinere ?nderungen an Dokumentations-Dateien
+vorgenommen und diese ?nderungen nach branches/eugen portiert. Au?erdem
+habe ich den trunk nach tags/release-0.96 und nach
+branches/visBienenstock kopiert. Zur Version 162 sollten also folgende
+Verzeichnisse gleich sein:
+
+ * trunk
+ * tags/release-0.96
+ * branches/eugen
+ * branches/visBienenstock
+
+Das letzte Verzeichnis habe ich angelegt, da
+branches/szenario_visualisierung vollkommen veraltet ist und die
+?nderungen darin sich leicht in das neue Verzeichnis ?bertragen lassen.
+Konkret hatten Philip und Samuel in branches/szenario_visualisierung
+folgende Verzeichnisse angelegt:
+
+ * source/server/scenario/bienenstock/visualisierung/ (von Philip)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/scenarios/visualisierung/ zu
+   verschieden.
+
+ * source/client/visualisation (von Samuel)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/nereus/visualisation/client/ zu
+   verschieben.
+
+ * source/server/visualisation (von Samuel)
+   Ich schlage vor, das nach
+   branches/visBienenstock/source/nereus/visualisation/server/ zu
+   verschieben.
+
+Dabei w?re noch zu pr?fen, ob die beiden Dateien, die derzeit in
+branches/visBienenstock/source/nereus/visualisation/ liegen, noch
+gebraucht werden bzw. angepa?t werden m??ten.
+
+Wenn Ihr andere Vorschl?ge habt, wo die Verzeichnisse in
+branches/visBienenstock/ liegen sollten, teilt diese bitte m?glichst
+schnell mit. Teilt bitte auch mit, wenn Ihr weitere Verzeichnisse
+ben?tigt. Eugen oder ich w?rde die Datei build.xml morgen entsprechend
+anpassen.
+
+Au?erdem waren in branches/szenario_visualisierung noch folgende
+?nderungen vorgenommen worden, die per Hand in branches/visBienenstock/
+nachvollzogen werden m??ten:
+
+ * In source/server/scenario/bienenstock/Scenario.java war wohl von Philip
+   ein Attribut "private Visualisierung vis" erg?nzt worden und in den
+   beiden Methoden startphase und wartephase benutzt worden.
+
+ * In change-log.txt war von Philip eine Erg?nzung vorgenommen worden.
+
+Samuel und Philip: K?nntet Ihr die ?nderungen bitte m?glichst schnell in
+branches/visBienenstock/ vornehmen. Dies w?re dann nat?rlich auch die Basis
+f?r die weitere Arbeit an der Visualisierung.
+
+Das Compilieren der neuen Version (noch ohne die Komponenten der
+Visualisierung) ist sehr einfach (Dank an Eugen): Im Hauptverzeichnis
+mit der Datei build.xml "ant allTar" eingeben. Dadurch werden die beiden
+Distributions-Dateien f?r Client und Server im Verzeichnis dist erzeugt
+("ant clean" l?scht das Verzeichnis wieder). Die kann man an geeigneter
+Stelle auspacken, ins Verzeichnis runScripts wechseln und dort die
+jeweilige Komponente starten.
+
+Zum Compilieren ist nat?rlich ant erforderlich. Falls es bei Euch nicht
+installiert ist, k?nnt Ihr es auf islasker benutzen (auf ischia ist
+derzeit noch eine veraltete Version).
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Mon Jun  6 15:41:41 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Mon, 6 Jun 2005 15:41:41 +0200 (CEST)
+Subject: [Nereus-devel] =?iso-8859-1?Q?Erg=E4nzung:_Aktualisierung_von_Nereus?=
+In-Reply-To: <200506051618.SAA14408@isis.informatik.uni-stuttgart.de>
+Message-ID: <200506061341.PAA02137@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich schrieb:
+> Konkret hatten Philip und Samuel in branches/szenario_visualisierung
+> folgende Verzeichnisse angelegt:
+> 
+>  * source/server/scenario/bienenstock/visualisierung/ (von Philip)
+>    Ich schlage vor, das nach
+>    branches/visBienenstock/source/scenarios/visualisierung/ zu
+>    verschieden.
+
+Meine obige Angabe war falsch. Ich habe jetzt in visBienenstock ein
+Verzeichnis source/scenarios/bienenstock/visualisationgui/ angelegt.
+Ich sehe es so, da? dieses Verzeichnis ausschlie?lich die
+Szenario-spezifische Visualisierungskomponente auf Client-Seite enth?lt.
+Ich habe die Dateien aus
+szenario_visualisation/source/server/scenario/bienenstock/visualisierung/
+in das neue Verzeichnis verschoben und die package- und
+import-Anweisungen angepa?t. Beim Versuch zu Compilieren habe ich
+gesehen, da? alle Methoden in den Klassen VisBiene, VisBienenstock,
+VisBlume und VisFeld im Package visualisierungsUmgebung package-scoped
+waren. Das habe ich korrigiert und sie public deklariert.
+
+Das Verzeichnis
+szenario_visualisation/source/scenarios/bienenstock/visualisation/
+scheint veraltet und deshalb habe ich den Inhalt nicht kopiert.
+
+>  * source/client/visualisation (von Samuel)
+>    Ich schlage vor, das nach
+>    branches/visBienenstock/source/nereus/visualisation/client/ zu
+>    verschieben.
+
+Habe ich jetzt nach visBienenstock/source/nereus/visualisationclient/
+verschoben und dabei umbenannt. Ich sehe es so, da? in diesem Verzeichnis
+die Dateien zur Visualisierung auf Client-Seite liegen, die unabh?ngig
+vom Szenarion sind. Die beiden darin enthaltenen Interfaces IVisualisation
+und IVisualisationClient habe ich nach ins Package
+nereus.simulatorinterfaces verschoben. Habe alle Dateien an die neue
+Struktur angepa?t.
+
+>  * source/server/visualisation (von Samuel)
+>    Ich schlage vor, das nach
+>    branches/visBienenstock/source/nereus/visualisation/server/ zu
+>    verschieben.
+
+Habe ich jetzt nach visBienenstock/source/nereus/simulator/visualisation/
+kopiert und die Klassen f?r den neuen Ort angepa?t. Ich sehe es so, da? in
+diesem Verzeichnis die Dateien zur Visualisierung auf Server-Seite liegen,
+die unabh?ngig vom Szenarion sind. Die beiden enthaltenen Interfaces
+IVisualisationServerExtern und IVisualisationServerIntern habe ich ins
+Package nereus.simulatorinterfaces verschoben. Die beiden enthaltenen
+Exceptions habe ich in das Package nereus.exceptions verschoben.
+
+Schlie?lich habe ich build.xml angepa?t, so da? jetzt alle Dateien zur
+Visualisierung einbezogen werden.
+
+> Dabei w?re noch zu pr?fen, ob die beiden Dateien, die derzeit in
+> branches/visBienenstock/source/nereus/visualisation/ liegen, noch
+> gebraucht werden bzw. angepa?t werden m??ten.
+
+Das ist weiterhin noch zu pr?fen.
+
+Eugen: Hast Du dazu eine Einsch?tzung?
+
+Au?erdem ist insbesondere noch folgendes zu tun:
+
+ * Kommentare erg?nzen bei simulatorinterfaces/IVisualisationClient und
+   simulatorinterfaces/IVisualisation
+
+ * Kommentare erg?nzen bei exceptions/AuthentifizierungException und
+   exceptions/DoppeltesSpielException
+
+ * ?berarbeitung der Klassen in den Packages
+   visBienenstock/source/scenarios/bienenstock/visualisationgui/
+   visBienenstock/source/nereus/visualisationclient/
+   visBienenstock/source/nereus/simulator/visualisation/
+
+Samuel und Philip: Bitte gebt mir Bescheid, sobald Ihr Ergebnisse oder
+Fragen habt.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun  9 18:41:46 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 9 Jun 2005 18:41:46 +0200 (CEST)
+Subject: [Nereus-devel] Re: Problem mit der ID eines Spiels und der Visualisierung.
+Message-ID: <200506091641.SAA09105@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich schieb:
+> Tiefe Eingriffe in den Simulator halte ich insbesondere zum derzeitigen
+> Zeitpunkt f?r keine gute Idee.
+> 
+> Ich w?rde vorschlagen, die vorhandene Id komplett (so weit wie m?glich)
+> zu ignorieren. Sehe ich es richtig, da? Ihr f?r die Visualisierung nur
+> eine Nummer (kleine ganze Zahl) ben?tigt, die f?r jeden Durchlauf jedes
+> Spiels eindeutig ist und von der Klasse Game abfragbar ist? Dann erg?nze
+> ich die Klasse Game um folgende Methode:
+> 
+>     /**
+>      * Liefert eine f?r alle Spiele eindeutige Kennzahl des aktuellen
+>      * Simulations-Durchlaufs des Spiels. Wenn das Spiel gerade nicht
+>      * ausgef?hrt wird, wird die Kennzahl des letzten Durchlaufs
+>      * geliefert. Wenn das Spiel au?erdem noch nicht ausgef?hrt wurde,
+>      * wird der Wert -1 geliefert.
+>      *
+>      * @return  Eine eindeutige Kennzahl des aktuellen oder letzten
+>      *          Simulations-Durchlaufs des Speils.
+>      */
+>     public int getRunNumber() {
+>         // Implementierung
+>     }
+
+Ich habe die Methode jetzt in der Klasse Game im branch visBienenstock
+aufgenommen und mit Revision 219 eingecheckt.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Sat Jun 11 18:22:18 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Sat, 11 Jun 2005 18:22:18 +0200 (CEST)
+Subject: [Nereus-devel] Frage zum Konstruktor von Game
+Message-ID: <200506111622.SAA14992@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe im Coordinator jetzt bei der Neuanmeldung eines Spiels die Id
+aus dem Namen des Spiels abgeleitet. Dabei ist mir aufgefallen, da? es
+einen Konstruktor von Game gibt (Game Zeile 198), der anscheinend nicht
+benutzt wird. Bis auf die Tatsache, da? darin das Attribut
+m_informationHandler nicht gesetzt wird und m_id eine neue Id zugewiesen
+wird, scheint der Konstruktor identisch zu sein zum vorhergehenden
+Konstruktor.
+
+Wei? jemand, man der Konstruktor gebraucht wird oder ob wir ihn l?schen
+k?nnen? Falls er gebraucht wird, m??te man noch die Erzeugung der Id
+ver?ndern (vom Namen ableiten).
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From custosV at gmx.de  Mon Jun 13 04:49:33 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Mon, 13 Jun 2005 04:49:33 +0200
+Subject: [Nereus-devel] eingebundene Visualisierung
+Message-ID: <42ACF43D.8050300@gmx.de>
+
+Hallo,
+habe nun die Visualisierung an den Nereus-Client eingebunden.
+
+Nach dem das Spiel gestartet wurde (bzw. simuliert), erscheint Button 
+"Szenario Visualisie..". Nach dem drauf dr?cken erscheint ein sehr 
+kleines Fenster.
+Dieses Fenster vergr?ssern und auf ">" dr?cken, darauf erscheint die 
+Umgebung wie gewohnt animiert.
+
+
+@Philip
+Problem: nach dem Schlie?en des VisualisierungsFenster, verschwindet 
+Nereus-Client.
+L?sung: ersetze exit(0) (bei  Aktion: Fensters schlie?en) durch anderes 
+Konstrukt.
+
+Gr??e, Eugen.
+
+PS: bis heute um 14:00 Uhr.
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Mon Jun 13 19:08:50 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Mon, 13 Jun 2005 19:08:50 +0200 (CEST)
+Subject: [Nereus-devel] Fehler nach Merging
+Message-ID: <200506131708.TAA06698@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe eben die ?nderungen von Releas 160-312 aus branches/eugen nach
+trunk gemerged und diese ?nderung anschlie?end nach visBienenstock.
+trunk und branches/eugen sollten dadurch zum Release 315 identisch sein.
+
+Compilieren lassen sich danach sowohl die Version in trunk wie die
+Version in visBienenstock. Die erste konnte ich auch fehlerfrei
+ausf?hren. Bei Ausf?hren der Version aus visBienenstock trat jedoch
+folgender Fehler auf:
+
+2: TANZE: habe ?bermittelt Koordinate : (2 / 3) Nutzen 121.0
+Fehler beim Ablauf des Spiels
+java.lang.NullPointerException
+        at scenarios.bienenstock.umgebung.Karte.konvertiereBienenHash(Karte.java:344)
+        at scenarios.bienenstock.umgebung.Karte.visualisieren(Karte.java:874)
+        at scenarios.bienenstock.Scenario.simulateGame(Scenario.java:982)
+        at nereus.simulator.Game.run(Game.java:580)
+
+Einzelne ?nderungen an Karte.java m?ssen wohl inkompatibel gewesen sein.
+Ge?ndert wurde diese Klasse in branches/visBienenstock durch Samuel von
+Release 211 nach 212 und in branches/eugen durch Eugen von Release 186
+nach 187, von Release 220 nach 221 und von Release 312 nach 313. Die
+?nderungen von Samuel waren eigentlich eher geringf?gig (zu sehen durch
+einen Vergleich der Version in trunk und der jetzigen version in
+branches/visBienenstock).
+
+Eugen: K?nntest Du den Fehler bitte mal genauer untersuchen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From samuel at gmx.info  Tue Jun 14 03:09:56 2005
+From: samuel at gmx.info (samuel at gmx.info)
+Date: Tue, 14 Jun 2005 03:09:56 +0200
+Subject: [Nereus-devel] Fehler nach Merging
+In-Reply-To: <200506131708.TAA06698@isis.informatik.uni-stuttgart.de>
+References: <200506131708.TAA06698@isis.informatik.uni-stuttgart.de>
+Message-ID: <42AE2E64.4080205@gmx.info>
+
+Hi,
+
+
+>Compilieren lassen sich danach sowohl die Version in trunk wie die
+>Version in visBienenstock. Die erste konnte ich auch fehlerfrei
+>ausf?hren. Bei Ausf?hren der Version aus visBienenstock trat jedoch
+>folgender Fehler auf:
+>
+>2: TANZE: habe ?bermittelt Koordinate : (2 / 3) Nutzen 121.0
+>Fehler beim Ablauf des Spiels
+>java.lang.NullPointerException
+>        at scenarios.bienenstock.umgebung.Karte.konvertiereBienenHash(Karte.java:344)
+>        at scenarios.bienenstock.umgebung.Karte.visualisieren(Karte.java:874)
+>        at scenarios.bienenstock.Scenario.simulateGame(Scenario.java:982)
+>        at nereus.simulator.Game.run(Game.java:580)
+>
+>  
+>
+Der Fehler tritt nur auf, wenn der Agent "SimplerKooperativerBDIAgent"
+verwendet wird. Das war bei mir reproduzierbar. Ebenso fiel mir auf das
+der Fehler bei mir auch recht ?hnlich ist: Er tritt auf, wenn ein Agent
+in der 19-21sten Runde tanzt. Auch das ist reproduzierbar.
+
+Ich hoffe dieser Hinweis tr?gt zur schnellen Erkennung der Fehlerquelle
+und ihrer Beseitigung bei.
+  Viele Gr??e,
+     Samuel
+
+
+
+
+From samuel at gmx.info  Tue Jun 14 03:20:02 2005
+From: samuel at gmx.info (samuel at gmx.info)
+Date: Tue, 14 Jun 2005 03:20:02 +0200
+Subject: [Nereus-devel] Fehler nach Merging
+In-Reply-To: <42AE2E64.4080205@gmx.info>
+References: <200506131708.TAA06698@isis.informatik.uni-stuttgart.de> <42AE2E64.4080205@gmx.info>
+Message-ID: <42AE30C2.8020200@gmx.info>
+
+Hi,
+
+>Der Fehler tritt nur auf, wenn der Agent "SimplerKooperativerBDIAgent"
+>verwendet wird. Das war bei mir reproduzierbar. Ebenso fiel mir auf das
+>der Fehler bei mir auch recht ?hnlich ist: Er tritt auf, wenn ein Agent
+>in der 19-21sten Runde tanzt. Auch das ist reproduzierbar.
+>  
+>
+Ich habe mich komplett geirrt, inzwischen ist der Fehler auch bei der
+Verwendung anderer Agenten aufgetreten und auch schon in Runde Drei.
+
+Viele Gr??e,
+   Samuel
+
+
+From custosV at gmx.de  Tue Jun 14 05:34:35 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Tue, 14 Jun 2005 05:34:35 +0200
+Subject: [Nereus-devel] Tanz Problem Behoben + error unmarshalling
+Message-ID: <42AE504B.6060500@gmx.de>
+
+Hallo,
+habe das Problem mit dem Tanzen behoben ,
+das Projekt zum Compilieren gebracht (seit  <318 bis 335 konnte das 
+Projekt nicht compiliert werden).
+@Samuel:  Bitte in Zukunft nur compilierf?hige Projekte hochladen. (Wenn 
+sein muss dann lieber einen zweiten Konstruktor hinzuf?gen als nicht 
+compilierbar).
+
+die letze Version 336  hat noch einige Fehler:
+nach dem Start der Simulation ---> SzenarioVisualisierung gibt es auf 
+der Client-Seite Fehlermeldung:
+
+Verbindungsproblem!
+error unmarshalling return; nested exception is:
+        java.lang.ClassNotFoundException: 
+nereus.simulator.visualisation.Spielanfang
+
+Der Fehler tritt vermutlich in VisualisationServer.java
+
+
+Gr??e
+     Eugen.
+
+
+
+
+From custosV at gmx.de  Tue Jun 14 05:56:25 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Tue, 14 Jun 2005 05:56:25 +0200
+Subject: [Nereus-devel] DurchlaufNummer-Auswahl
+Message-ID: <42AE5569.6010107@gmx.de>
+
+Hallo,
+
+habe jetzt die DurchlaufNummer - Auswahl implementiert.
+nach dem Dr?cken auf Visualiseirung erscheint eine Box mit der Auswahl 
+der DurchlaufNummer.
+Darauf erscheint die entsprechende Visualisierung.
+
+Gr??e
+     Eugen.
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Tue Jun 14 11:42:52 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Tue, 14 Jun 2005 11:42:52 +0200 (CEST)
+Subject: [Nereus-devel] Tanz Problem Behoben + error unmarshalling
+In-Reply-To: <42AE504B.6060500@gmx.de>
+Message-ID: <200506140942.LAA19848@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+On 14 Jun, Eugen Volk wrote:
+> Verbindungsproblem!
+> error unmarshalling return; nested exception is:
+>         java.lang.ClassNotFoundException: 
+> nereus.simulator.visualisation.Spielanfang
+> 
+> Der Fehler tritt vermutlich in VisualisationServer.java
+
+Es fehlte eine Klasse bzw. habe ich Scenario.jar durch eine neue
+jar-Datei BienenstockVis.jar ersetzt. Die eingecheckte Version liefert
+keinen Fehler mehr. Leider startet aber das Fenster mit der Karte nicht.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Tue Jun 14 19:18:04 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Tue, 14 Jun 2005 19:18:04 +0200 (CEST)
+Subject: [Nereus-devel] =?iso-8859-1?Q?Scripte_f=FCr_die_Statistik?=
+Message-ID: <200506141718.TAA26376@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe ein Script BienenstockVis.sh bzw. BienenstockVis.bat zum
+Starten der Bienenstock-Visualisierung erstellt. Es ist jetzt Teil der
+Client-Distributionsdatei. Auf der Kommandozeile ist der Name des Spiels
+und die Durchlaufnummer anzugeben (alos z.B.: BienenstockVis.sh name 1).
+
+In dem Zusammenhang habe ich den Parameter f?r den Port entfernt (u.a.
+auch aus dem Konstruktor VisualisationClient). Man kann aber den Port
+als Teil vom Servernamen ?bergeben, das habe ich aber nicht getestet.
+Der Name vom Verzeichnis mit den Bildern wird jetzt dem Konstruktor
+BienenstockVisSteuerung ?bergeben, der ihn an den Konstruktor von
+BienenstockVisGui weiter gibt.
+
+Leider funktioniert das zumindest beim Script noch nicht richtig, da im
+Fenster keine Bilder angezeigt werden.
+
+Das Verzeichnis mit den Bildern habe ich aus libs nach
+scenariosconfig/bienenstock verschoben.
+
+Eugen: Du m??test in registrationgui/GameParameterPanel die Zeile 863
+anpassen. Dort habe ich einen dummy-Wert eingetragen, damit sich die
+Klasse compilieren l?st. In Zeile 828 wird derzeit noch eine Variable
+port definiert, die nicht mehr verwendet wird (habe ich aus dem
+Konstruktor-Aufruf in Zeile 858 entfernt).
+
+Eugen: K?nntest Du bitte im Script BienenstockVis.bat in der letzten
+Zeile noch die Kommandozeilen-Parameter erg?nzen. Ich wei? nicht wie das
+geht. Au?erdem gib bitte den Text aus, der in der vorhergehenden Zeile
+hinter echo steht (hei?t das bei DOS nicht type?).
+
+Ich werde versuchen, den Fehler mit den nicht dargestellten Bildern noch
+zu finden. Wenn jemand anderes eine Idee hat, woran das liegt, ist die
+gerne willkommen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Tue Jun 14 21:45:46 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Tue, 14 Jun 2005 21:45:46 +0200 (CEST)
+Subject: [Nereus-devel] =?iso-8859-1?Q?Problem_mit_Bildern_gel=F6st?=
+Message-ID: <200506141945.VAA28340@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+das Problem mit den fehlenden Bildern bei Verwendung von
+BienenstockVis.sh lag einfach daran, da? ein "/" am Ende vom Pfad fehlte.
+Jetzt funktioniert die Stand-Alone-Visualisierung. Allerdings wird das
+Fenster manchmal nur ganz klein ge?ffnet.
+
+Eugen: Ich habe eben festgestellt, da? (zumindest eben) auch vom
+Anmelde-Gui-Programm ein Fenster ge?ffnet wurde, das aber auch so klein
+war, da? ich es erst einmal nicht gesehen habe. Bilder waren darin
+nat?rlich noch keine, weil ja der Pfad noch nicht angegeben wird.
+
+Philip: Die roten Zahlen auf den Bienen kann man nicht so gut lesen.
+Kannst Du die Zahlen wei? machen? Das Fenster erscheint mir ?berigens
+(nachdem ich es selbst gro? gezogen habe und eine Runde weiter
+visualisiert habe) von der Gr??e nicht ganz ideal. An der rechten Seite
+ist ein leerer Streifen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 00:14:18 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 00:14:18 +0200 (CEST)
+Subject: [Nereus-devel] Karten korrigiert
+Message-ID: <200506142214.AAA00393@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe die beiden Karten korrigiert. Der Fehler war, da? das Feld 38,
+dem eine Blume hinzugef?gt worden war, die Koordinaten x=4, y=6 hatte
+aber x=6, y=4 haben mu?.
+
+Samuel: Du sagtest, da? Du ein Programm zur Erzeugung einer Karte hast.
+Vieleicht kannst Du ja noch morgen Vormittag eine erzeugen mit 13
+Feldern in der H?he und 25 Feldern in der Breite.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 01:33:44 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 01:33:44 +0200 (CEST)
+Subject: [Nereus-devel] Visualisierung korrigiert
+Message-ID: <200506142333.BAA02728@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+die Visualisierung scheint jetzt zu funktionieren. Der Fehler lag in der
+Bedingung der while-Schleife in der Steuerung.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From custosV at gmx.de  Wed Jun 15 03:23:38 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Wed, 15 Jun 2005 03:23:38 +0200
+Subject: [Nereus-devel] Bilder
+Message-ID: <42AF831A.8060204@gmx.de>
+
+Hallo,
+
+habe den Pfad zu den Bildern in GameParameterPanel.java angepasst.
+Die Bilder sind jetzt sichtbar.
+
+Gr??e
+    Eugen.
+
+PS: bis heute um 15:00 Uhr.
+
+
+From mango.3 at gmx.de  Wed Jun 15 08:51:26 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Wed, 15 Jun 2005 08:51:26 +0200
+Subject: [Nereus-devel] Test misslungen
+In-Reply-To: <42AF831A.8060204@gmx.de>
+References: <42AF831A.8060204@gmx.de>
+Message-ID: <42AFCFEE.6050308@gmx.de>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hallo Dietmar,
+da du gestern so t?chtig warst, wollte ich es mir heute morgen gleich
+mal anschauen.
+Allerdings traten auf registrationClient und Server seite Fehler auf,
+die mich daran hinderten
+das Spiel zu visualisieren.
+Ich habe das Gef?hl, da? die Agenten nicht gefunden werden. Wenn also
+jemand gestern etwas
+mit dem AgentenPfad, oder ?hnlichem zu tun hatte, m?ge er dies nochmal
+anschauen.
+Danke, bis nachher (14.00 uhr)
+
+Philip
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCr8/uTp078gjSU8YRAtJ1AKCFhwQp5m1JzPkbDDjfuTmojBToFwCgjW39
+MC7u/+lNFv60V6OeQIlQEXs=
+=AyLV
+-----END PGP SIGNATURE-----
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 10:25:58 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 10:25:58 +0200 (CEST)
+Subject: [Nereus-devel] Test misslungen
+In-Reply-To: <42AFCFEE.6050308@gmx.de>
+Message-ID: <200506150826.KAA07852@isis.informatik.uni-stuttgart.de>
+
+Hallo Philip,
+
+On 15 Jun, Philip Funck wrote:
+> da du gestern so t?chtig warst, wollte ich es mir heute morgen gleich
+> mal anschauen.
+> Allerdings traten auf registrationClient und Server seite Fehler auf,
+> die mich daran hinderten
+> das Spiel zu visualisieren.
+> Ich habe das Gef?hl, da? die Agenten nicht gefunden werden.
+
+Zumindest war das das Problem, als ich das System eben getestet habe.
+Der Fehler war nur, das die environment-Variablen AGENT_PATH einen
+falschen Wert hatte. Ich habe das korrigiert und jetzt l?uft das System
+(zumindest bei mir) wieder.
+
+Beim anschlie?enden Test habe ich festgestellt, da? de Karte sehr
+flackert. Das sollten wir noch versuchen abzustellen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 11:00:24 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 11:00:24 +0200 (CEST)
+Subject: [Nereus-devel] Flackern abgestellt (war: Test misslungen)
+Message-ID: <200506150900.LAA08348@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich schrieb:
+> Beim anschlie?enden Test habe ich festgestellt, da? de Karte sehr
+> flackert. Das sollten wir noch versuchen abzustellen.
+
+Ich habe das Problem eben abgestellt, indem ich eine Methode update
+erg?nzt habe. Eine Beschreibung dazu findet sich unter
+http://www.codeproject.com/java/javadoublebuffer.asp
+
+Die L?sung funktioniert nur, wenn die Felder immer komplett neu (also
+nicht nur partiell) gezeichnet werden.
+
+Philip: Ist das so?
+
+Philip: Die wei?en Nummern auf den Bienen sind schon ganz gut. K?nnte
+man die noch in Fettdruck darstellen?
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From mango.3 at gmx.de  Wed Jun 15 11:45:12 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Wed, 15 Jun 2005 11:45:12 +0200
+Subject: [Nereus-devel] Re: Flackern abgestellt (war: Test misslungen)
+In-Reply-To: <200506150900.LAA08348@isis.informatik.uni-stuttgart.de>
+References: <200506150900.LAA08348@isis.informatik.uni-stuttgart.de>
+Message-ID: <42AFF8A8.8040402@gmx.de>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hallo,
+
+>
+> Ich habe das Problem eben abgestellt, indem ich eine Methode update
+> erg?nzt habe. Eine Beschreibung dazu findet sich unter
+> http://www.codeproject.com/java/javadoublebuffer.asp
+>
+Super, das habe ich nicht gefunden, ich dachte, da? das mit der Zeit
+zu tun hat, die
+ben?tigt wird um das Fenster neu zu zeichnen. Aufgrund der geringen
+komplexit?t der Anwendung
+war das allerdings unwahrscheinlich.
+
+> Die L?sung funktioniert nur, wenn die Felder immer komplett neu
+> (also nicht nur partiell) gezeichnet werden.
+>
+> Philip: Ist das so?
+
+Wie meinst du das? Meinst du damit, da? das nur funktioniert, wenn die
+Karte komplett neu gezeichnet wird,
+oder der gesamte Fensterinhalt?
+
+Allgemein finde ich in dem Text des Links keinen Hinweis darauf.
+
+>
+> Philip: Die wei?en Nummern auf den Bienen sind schon ganz gut.
+> K?nnte man die noch in Fettdruck darstellen?
+
+Werd ich umsetzen.
+
+Gru?
+Philip
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCr/ioTp078gjSU8YRAt3NAKClQFqRWWKzwflcejSd08L6VwN9vACfam2S
+GvME7osdK9+KdMFJ3pLGh6o=
+=IuUm
+-----END PGP SIGNATURE-----
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 11:54:04 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 11:54:04 +0200 (CEST)
+Subject: [Nereus-devel] Re: Flackern abgestellt (war: Test misslungen)
+In-Reply-To: <42AFF8A8.8040402@gmx.de>
+Message-ID: <200506150954.LAA09102@isis.informatik.uni-stuttgart.de>
+
+Hallo Philip,
+
+On 15 Jun, Philip Funck wrote:
+>> Die L?sung funktioniert nur, wenn die Felder immer komplett neu
+>> (also nicht nur partiell) gezeichnet werden.
+>>
+>> Philip: Ist das so?
+> 
+> Wie meinst du das? Meinst du damit, da? das nur funktioniert, wenn die
+> Karte komplett neu gezeichnet wird,
+> oder der gesamte Fensterinhalt?
+
+Alle Bereiche, in denen sich etwas ?ndern, m?ssen neu gezeichnet werden.
+In der Tat geht es prim?r um den Bereich des Fensters, der nicht zur
+Karte geh?rt, wie z.B. der Rundenz?hler (die Felder der Karte werden auf
+jeden Fall neu gezeichnet, da sie sonst vorher, als der Bereich zuerst
+gel?scht wurde, leer geblieben w?ren).
+
+Anders gesagt: Deine Zeichen-Methode darf sich nicht darauf verlassen,
+da? der Bereich, in den sie zeichnet oder schreibt, vorher gel?scht
+wird.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 12:05:17 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 12:05:17 +0200 (CEST)
+Subject: [Nereus-devel] Fehler in Scenario und Agenten
+Message-ID: <200506151005.MAA09297@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe gerade folgende Ausgabe auf Client-Seite erhalten. 
+
+>>>
+Neue Runde Nr.: 47
+2: alter MODUS  Desire: 3 Intention: 17
+2: neuer MODUS  Desire: 3 Intention: 14
+2: Desire Ziel (5 / 2)
+2: tanke (4 / 4)
+3: fliege nach (3, 4 )
+
+4: Die Biene selbst
+4: Rundennummer:  47
+4: Zustand:  fliegend
+4: Position:  4 , 4
+4: geladene Nektarmenge:  100
+4: geladene Honigmenge:  24
+4: abgeliferte Nektarmenge: 300
+4: alter MODUS  Desire: 3 Intention: 11
+
+1: Die Biene selbst
+1: Rundennummer:  47
+1: Zustand:  fliegend
+1: Position:  6 , 4
+1: geladene Nektarmenge:  0
+1: geladene Honigmenge:  88
+1: abgeliferte Nektarmenge: 400
+1: alter MODUS  Desire: 3 Intention: 11
+1: neuer MODUS  Desire: 3 Intention: 12
+1: lande (6 / 4)
+4: neuer MODUS  Desire: 3 Intention: 14
+4: lande (4 / 4)
+
+Neue Runde Nr.: 48
+2: alter MODUS  Desire: 3 Intention: 14
+2: sofortNektarAbliefern 
+2: neuer MODUS  Desire: 3 Intention: 14
+2: Desire Ziel (5 / 2)
+2: alter MODUS  Desire: 3 Intention: 14
+2: neuer MODUS  Desire: 3 Intention: 11
+2: Desire Ziel (5 / 2)
+2: starte (4 / 4)
+3: fliege nach (3, 1 )
+<<<
+
+Wie man sieht, fliegt die Biene 3 von Feld (3, 4) nach (3, 1) und kann
+das tats?chlich auch (sie springt auf der Karte). Es ist also
+anscheinend sowohl ein Fehler in der Biene (da? sie das m?chte) wie auch
+im Scenario (da? es das zul?st). Jeder von uns, der Zeit hat, sollte
+sich das mal anschauen. Welche Art von Agent das war, kann ich im Moment
+aber nicht sagen. Ich vermute es war der UnkooperativeBDIAgent.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From mango.3 at gmx.de  Wed Jun 15 12:34:32 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Wed, 15 Jun 2005 12:34:32 +0200
+Subject: [Nereus-devel] Re: Flackern abgestellt (war: Test misslungen)
+In-Reply-To: <200506150954.LAA09102@isis.informatik.uni-stuttgart.de>
+References: <200506150954.LAA09102@isis.informatik.uni-stuttgart.de>
+Message-ID: <42B00438.8080607@gmx.de>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+>
+
+> Anders gesagt: Deine Zeichen-Methode darf sich nicht darauf
+> verlassen, da? der Bereich, in den sie zeichnet oder schreibt,
+> vorher gel?scht wird.
+
+Genau das ist mir eben aufgefallen.
+Beim resize des Fensters verschmieren die Felder.
+Ich werde das bereinigen.
+Ansonsten ist die Karte jetzt im Fenster zentriert, die Gr??e korrekt
+auf das Panel angepasst,
+der Runden-spring-vor-zur?ck-button-bug behoben und die Zahlen sind
+fett geschrieben,
+wobei der Unterschied zwischen fett und normal gering ist.
+
+Philip
+
+ps.: mir ist aufgefallen, da? wenn man die vis vor der Simulation
+startet, das Fenster nicht gro? wird
+und die run() von der Steuerung offensichtlich nicht aktiv wird.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCsAQ3Tp078gjSU8YRAlypAKC3uII5Gh1ktaP88R0LOQ1orWa4GQCfUYta
+vYCMAWDUrF542BG+dCbtD3U=
+=98jy
+-----END PGP SIGNATURE-----
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 12:40:06 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 12:40:06 +0200 (CEST)
+Subject: [Nereus-devel] Start aus dem Arbeitsverzeichnis
+Message-ID: <200506151040.MAA09879@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+es ist jetzt (ab Release 363) m?glich, alle run-Scripte aus dem
+Verzeichnis runScripts vom Arbeitsverzeichnis aus zu starten (nach
+vorherigem "ant allTar"). Man mu? die Distributionsdateien also nicht
+mehr (in ein anderen Verzechnis) auspacken.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 16:42:58 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 16:42:58 +0200 (CEST)
+Subject: [Nereus-devel] branch szenario_visualisation
+Message-ID: <200506151443.QAA13489@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+wenn Ihr keine Einw?nde habt, werde ich den veralteten branch
+szenario_visualisation morgen fr?h l?schen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From custosV at gmx.de  Wed Jun 15 16:50:44 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Wed, 15 Jun 2005 16:50:44 +0200
+Subject: [Nereus-devel] Flimmern
+Message-ID: <42B04044.8000004@gmx.de>
+
+Hallo,
+ich habe festgestellt, dass das Flimmern bei der Visualisierung der 
+Karte (zumindest unter Windows) gelegentlich auftritt.
+Ist das nur unter windows  (wie ist es unter Linux?) so oder ist das 
+Problem noch nicht behoben?
+
+Gr??e, Eugen.
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 16:56:40 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 16:56:40 +0200 (CEST)
+Subject: [Nereus-devel] Flimmern
+In-Reply-To: <42B04044.8000004@gmx.de>
+Message-ID: <200506151456.QAA13740@isis.informatik.uni-stuttgart.de>
+
+Hallo Eugen,
+
+On 15 Jun, Eugen Volk wrote:
+> ich habe festgestellt, dass das Flimmern bei der Visualisierung der 
+> Karte (zumindest unter Windows) gelegentlich auftritt.
+> Ist das nur unter windows  (wie ist es unter Linux?) so oder ist das 
+> Problem noch nicht behoben?
+
+Unter Linux sehe ich kein Flimmern mehr. Tritt das bei Dir unter
+bestimmten Bedingungen auf?
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From custosV at gmx.de  Wed Jun 15 17:46:55 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Wed, 15 Jun 2005 17:46:55 +0200
+Subject: [Nereus-devel] Flimmern
+In-Reply-To: <200506151456.QAA13740@isis.informatik.uni-stuttgart.de>
+References: <200506151456.QAA13740@isis.informatik.uni-stuttgart.de>
+Message-ID: <42B04D6F.5000006@gmx.de>
+
+Hallo Dietmar,
+
+Dietmar Lippold wrote:
+
+>Hallo Eugen,
+>
+>On 15 Jun, Eugen Volk wrote:
+>  
+>
+>>ich habe festgestellt, dass das Flimmern bei der Visualisierung der 
+>>Karte (zumindest unter Windows) gelegentlich auftritt.
+>>Ist das nur unter windows  (wie ist es unter Linux?) so oder ist das 
+>>Problem noch nicht behoben?
+>>    
+>>
+>
+>Unter Linux sehe ich kein Flimmern mehr. Tritt das bei Dir unter
+>bestimmten Bedingungen auf?
+>
+>  
+>
+Habe das Problem gel?st, werde in den n?chsten 2 min einchecken.
+
+Gr??e, Eugen
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Wed Jun 15 18:39:02 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Wed, 15 Jun 2005 18:39:02 +0200 (CEST)
+Subject: [Nereus-devel] Flimmern
+In-Reply-To: <42B04D6F.5000006@gmx.de>
+Message-ID: <200506151639.SAA15157@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+On 15 Jun, Eugen Volk wrote:
+>>>ich habe festgestellt, dass das Flimmern bei der Visualisierung der 
+>>>Karte (zumindest unter Windows) gelegentlich auftritt.
+>>>Ist das nur unter windows  (wie ist es unter Linux?) so oder ist das 
+>>>Problem noch nicht behoben?
+
+> Habe das Problem gel?st, werde in den n?chsten 2 min einchecken.
+
+Wie mir Eugen eben gesagt hat, hat er das Problem doch noch nicht
+gel?st. Mit Version 358 (in der die Methode update wohl noch nicht
+vorhanden war) scheint das Flimmern unter Windows nicht aufzutreten.
+
+Philip: Hast Du irgendwo Windows und kannst das auch mal testen?
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From mango.3 at gmx.de  Wed Jun 15 18:47:08 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Wed, 15 Jun 2005 18:47:08 +0200
+Subject: [Nereus-devel] Flimmern
+In-Reply-To: <200506151639.SAA15157@isis.informatik.uni-stuttgart.de>
+References: <200506151639.SAA15157@isis.informatik.uni-stuttgart.de>
+Message-ID: <42B05B8C.8050305@gmx.de>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+
+> Philip: Hast Du irgendwo Windows und kannst das auch mal testen?
+
+Ich bin im Moment dabei mir wieder ein Windows zu installieren.
+
+Gru?
+Philip
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCsFuLTp078gjSU8YRAj1OAJ45GD/aoL4DGesCarGNQl69bICC2QCePWiR
+dkUL5NXMnFBGjYGNXtvOSmw=
+=x5FV
+-----END PGP SIGNATURE-----
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 00:07:18 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 00:07:18 +0200
+Subject: [Nereus-devel] Fehler beim Fliegen
+Message-ID: <20050615220718.GA1094@islasker.informatik.uni-stuttgart.de>
+
+Hallo,
+
+nach l?ngeren Untersuchungen habe ich festgestellt, da? das fehlerhafte
+Fliegen genau die in meiner Mail vermuteten Ursachen hat: Der
+UnkooperativerBDIAgent ist fehlerhaft (versucht teilweise zu einem Feld zu
+fliegen, zu dem es keine Verbindung gibt) und zus?tzlich ist das Scenario
+fehlerhaft (der Test auf Zul?ssigkeit ist falsch).
+
+Weiterhin habe ich festgestellt, da? der EinfacherAgent teilweise
+zu seinem aktuellen Feld fliegt. Wollen wir das zulassen?
+
+Eugen: Bitte korrigiere den Fehler im UnkooperativerBDIAgent, wenn der
+weiter bestehen soll.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 01:34:40 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 01:34:40 +0200
+Subject: [Nereus-devel] Programm zur Kartenerzeugung
+Message-ID: <20050615233440.GA2271@islasker.informatik.uni-stuttgart.de>
+
+Hallo,
+
+ich habe ein Programm zur Erzeugung von Karten geschrieben. Werde es
+nachher einchecken.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 18:13:34 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 18:13:34 +0200 (CEST)
+Subject: [Nereus-devel] =?iso-8859-1?Q?Fehler_beim_Fliegen,_Erg=E4nzung?=
+Message-ID: <200506161613.SAA03186@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+m?glicher Weise hatte ich den UnkooperativerBDIAgent von Eugen
+f?lschlicher Weise verd?chtigt, falsch zu fliegen. Der Fehler tritt
+n?mlich immer noch beim EinfacherAgent auf. Wie ich nun gesehen habe,
+findet sich in dessen Quelltext folgender Abschnitt (Zeile 172-179):
+
+>>>
+        if (id == 3) {
+            fliegen(3, 1);
+            landen();
+            for(i = 0; i < 20; i++) {
+                zuschauen();
+            }
+            starten();
+        }
+<<<
+
+Offensichtlich fliegt der Agent (in Abh?ngigkeit von seiner ID!)
+unabh?ngig von seiner aktuellen Position zur Position (3, 1).
+
+Ist es sinnvoll, zu versuchen, diesen Agenten zu korrigieren?
+
+Eugen: K?nntest Du ersatzweise einen "dummen" Agenten bereit stellen?
+Ansonsten w?rden wohl auch die beiden Agenten
+SimplerKooperativerBDIAgent und SimplerUnkoopBDIAgent reichen.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From mango.3 at gmx.de  Thu Jun 16 18:15:42 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Thu, 16 Jun 2005 18:15:42 +0200
+Subject: [Nereus-devel] neue Karte & flackern
+Message-ID: <42B1A5AE.9000700@gmx.de>
+
+Hallo,
+ich w?rde gerne verifizieren, da? auch mit andersformatigeren Karten die
+Visualisierung richtig darstellt.
+Dietmar: Hast du einen funktionierenden Kartengenerator?
+
+Es w?rde mich sehr freuen, wenn ich insbesondere gr??ere Karten mal
+testen kann.
+
+Desweiteren frage ich mich, ob auf Windowsrechnern das Flackern jetzt
+auftritt oder nicht.
+Mein Windowsrechner wird noch etwas dauern, bis er voll installiert ist,
+und darauf will ich mich im
+Moment auch nicht konzetrieren.
+
+Dank und Gru?
+Philip
+
+Ps.: es ist eine neue Version des BienenstockVisGui hochgeladen
+
+
+From custosV at gmx.de  Thu Jun 16 18:39:30 2005
+From: custosV at gmx.de (Eugen Volk)
+Date: Thu, 16 Jun 2005 18:39:30 +0200
+Subject: [Nereus-devel] neue Karte & flackern
+In-Reply-To: <42B1A5AE.9000700@gmx.de>
+References: <42B1A5AE.9000700@gmx.de>
+Message-ID: <42B1AB42.9080709@gmx.de>
+
+Hallo Philip,
+
+>Desweiteren frage ich mich, ob auf Windowsrechnern das Flackern jetzt
+>auftritt oder nicht.
+>  
+>
+Leider immer noch. (Version 390)
+
+Gr??e, Eugen.
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 18:30:37 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 18:30:37 +0200 (CEST)
+Subject: [Nereus-devel] Re: neue Karte & flackern
+In-Reply-To: <42B1A5AE.9000700@gmx.de>
+Message-ID: <200506161630.SAA03437@isis.informatik.uni-stuttgart.de>
+
+Hallo Philip,
+
+On 16 Jun, Philip Funck wrote:
+> ich w?rde gerne verifizieren, da? auch mit andersformatigeren Karten die
+> Visualisierung richtig darstellt.
+> Dietmar: Hast du einen funktionierenden Kartengenerator?
+
+Ja, habe ich. Liegt unter scenarios.bienenstock.tools.KartenErzeugung
+
+> Es w?rde mich sehr freuen, wenn ich insbesondere gr??ere Karten mal
+> testen kann.
+
+Sehr gut. Ich habe eben eine 23x15 Karte in scenarios/bienenstock/karten
+unter dem Namen f23x15-sl2-n300.gml abgelegt. Die Menge und Anordnung
+von Blumen und freien Feldern ist derzeit noch nicht sinnvoll.
+
+Ich w?rde gerne diese gro?e Karte (nach ?berarbeitung) auch am Samstag
+bzw. morgen bei der Generalprobe verwenden.
+
+Derzeit wird das Feld (1, 1) von Deiner Visualisierung ja links oben
+dargestellt und die Zeilen mit h?herem y-Wert darunter. W?re es mit
+geringem Aufwand m?glich, das Feld (1, 1) links unter darzustellen (z.B.
+indem y durch (9 - y) ersetzt wird)? Dann k?nnte ich die Karten besser
+nachvolziehen.
+
+> Desweiteren frage ich mich, ob auf Windowsrechnern das Flackern jetzt
+> auftritt oder nicht.
+
+Hast Du was ge?ndert, um es abzustellen?
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 19:23:33 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 19:23:33 +0200 (CEST)
+Subject: [Nereus-devel] endbedingung
+Message-ID: <200506161723.TAA04138@isis.informatik.uni-stuttgart.de>
+
+Hallo,
+
+bei den Parametern des Bienenstock-Szenarios gibt es neben verschiedenen
+Endbedingungen auch nur "endbedingung". Was hei?t das denn? Es w?re wohl
+g?nstig, diesen Namen zu pr?zisieren.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Thu Jun 16 20:52:22 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Thu, 16 Jun 2005 20:52:22 +0200
+Subject: [Nereus-devel] Honig-Bonbons
+Message-ID: <20050616185222.GA16707@islasker.informatik.uni-stuttgart.de>
+
+Hallo,
+
+wei? jemand, wo es (gut schmeckende) Honig-Bonbons gibt? Die k?nnten wir
+am Samstag verteilen. :-)
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From mango.3 at gmx.de  Thu Jun 16 21:35:13 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Thu, 16 Jun 2005 21:35:13 +0200
+Subject: [Nereus-devel] Honig-Bonbons
+In-Reply-To: <20050616185222.GA16707@islasker.informatik.uni-stuttgart.de>
+References: <20050616185222.GA16707@islasker.informatik.uni-stuttgart.de>
+Message-ID: <42B1D471.2020802@gmx.de>
+
+Hallo,
+
+>wei? jemand, wo es (gut schmeckende) Honig-Bonbons gibt? Die k?nnten wir
+>am Samstag verteilen. :-)
+>  
+>
+Das ist eine gute Idee.
+
+Die BienenstockVis* erf?hrt gerade grundlegende ?nderungen, nur interne,
+aber gute!!!
+mal schaun obs klappt.
+
+Phil
+
+
+From mango.3 at gmx.de  Thu Jun 16 22:26:36 2005
+From: mango.3 at gmx.de (Philip Funck)
+Date: Thu, 16 Jun 2005 22:26:36 +0200
+Subject: [Nereus-devel] Honig-Bonbons
+In-Reply-To: <42B1D471.2020802@gmx.de>
+References: <20050616185222.GA16707@islasker.informatik.uni-stuttgart.de> <42B1D471.2020802@gmx.de>
+Message-ID: <42B1E07C.1050900@gmx.de>
+
+Hallo,
+das Zeichnen der Karte is jetzt nicht mehr im BienenstockVisGui, sondern
+in einer eigenen Klasse.
+Dadurch werden Scrollbars m?glich, eine Umstellung auf swing liegt somit
+nahe, wird aber wahrscheinlich bis Samstag nicht mehr umsetzbar sein.
+Gru?
+Philip
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Fri Jun 17 10:29:31 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Fri, 17 Jun 2005 10:29:31 +0200 (CEST)
+Subject: [Nereus-devel] =?iso-8859-1?Q?=DCberarbeitung_Visualisierung?=
+In-Reply-To: <42B1D471.2020802@gmx.de>
+Message-ID: <200506170829.KAA15783@isis.informatik.uni-stuttgart.de>
+
+Hallo Philip,
+
+On 16 Jun, Philip Funck wrote:
+> Die BienenstockVis* erf?hrt gerade grundlegende ?nderungen, nur interne,
+> aber gute!!!
+> mal schaun obs klappt.
+
+Die ?nderungen sind im Prinzip sehr gut, aber am Tag der Fertigstellung
+diese noch vorzunehmen war wohl nicht so sinnvoll. So flackert das
+Bilder jetzt wieder unter Linux (und unter Linux findet die Pr?sentation
+statt) und die Funktionskn?pfe funktionieren nicht richtig.
+
+Sieht Du die M?glichkeit, die Fehler noch bis um 14.00 Uhr zu
+beseitigen? Ansonsten m??ten wir eine ?ltere Version verwenden.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Fri Jun 17 11:21:27 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Fri, 17 Jun 2005 11:21:27 +0200 (CEST)
+Subject: [Nereus-devel] Flackern, Zentrierung
+Message-ID: <200506170921.LAA16538@isis.informatik.uni-stuttgart.de>
+
+Hallo Philip,
+
+man kann das Flackern (unter Linux) abstellen, indem man
+BienenstockVisKarte nicht von Container sondern von Panel ableitet. Ich
+habe das eben ge?ndert.
+
+Eugen: Du kannst ja mal ausprobieren, ob das Flackern unter Windows
+vieleicht gerade dann nicht auftritt, wenn man die Klasse von Container
+ableitet.
+
+Wenn die Karte kleiner ist als das Fenster (z.B. sofort bei der 8x8
+Karte), wird die Karte nicht mehr zentriert.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+
+From samuel at gmx.info  Fri Jun 17 21:53:55 2005
+From: samuel at gmx.info (samuel at gmx.info)
+Date: Fri, 17 Jun 2005 21:53:55 +0200
+Subject: [Nereus-devel] Neue Karte =?ISO-8859-1?Q?f=FCr_das_Bienenstockszenario_ve?=
+ =?ISO-8859-1?Q?rf=FCgbar?=
+Message-ID: <42B32A53.2000600@gmx.info>
+
+Hi,
+
+Ich habe eine neue Karte mit 23 x 15 Feldern erstellt. Die Blumen geben
+unterschiedlich viel Nektar pro Runde und Biene ab. Die Kapazit?t f?r
+abbauende Bienen ist bei jeder Blume 1. Wieviel Nektar eine Blume pro
+Runde und Biene abgeben kann, ist auf dem zweiten der anh?ngenden
+Screenshoots der neuen Karte mit roten Zahlen angemerkt.
+
+Viele Gr??e,
+    Samuel
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: test-0.jpg
+Type: image/jpeg
+Size: 109774 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/nereus-devel/attachments/20050617/29aa3ea8/attachment.jpg>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: test-0_abgabe.jpg
+Type: image/jpeg
+Size: 101087 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/nereus-devel/attachments/20050617/29aa3ea8/attachment-0001.jpg>
+
+From dietmar.lippold at informatik.uni-stuttgart.de  Fri Jun 17 22:09:23 2005
+From: dietmar.lippold at informatik.uni-stuttgart.de (Dietmar Lippold)
+Date: Fri, 17 Jun 2005 22:09:23 +0200
+Subject: [Nereus-devel] Neue =?iso-8859-1?Q?Kar?=
+	=?iso-8859-1?Q?te_f=FCr_das_Bienenstockszenario_verf=FCgbar?=
+In-Reply-To: <42B32A53.2000600@gmx.info>
+References: <42B32A53.2000600@gmx.info>
+Message-ID: <20050617200923.GA7606@islasker.informatik.uni-stuttgart.de>
+
+Hallo Samuel,
+
+On Fri, Jun 17, 2005 at 09:53:55PM +0200, samuel at gmx.info wrote:
+> Ich habe eine neue Karte mit 23 x 15 Feldern erstellt. Die Blumen geben
+> unterschiedlich viel Nektar pro Runde und Biene ab. Die Kapazit?t f?r
+> abbauende Bienen ist bei jeder Blume 1. Wieviel Nektar eine Blume pro
+> Runde und Biene abgeben kann, ist auf dem zweiten der anh?ngenden
+> Screenshoots der neuen Karte mit roten Zahlen angemerkt.
+
+Ausgezeichnet. Vielen Dank auch f?r die Bilder.
+
+Die Karte hat ja auch Diagonalverbindungen. K?nntest Du noch eine ohne
+Diagonalverbindungen erzeugen? Duzu m??test ja nur das Flag ?ndern und
+den Teil mit den Kanten austauschen (die Blumen br?uchtest Du nicht zu
+?ndern).
+
+Wof?r steht denn eigentlich das "420" im Dateinamen?
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit?t Stuttgart
+Raum 1.461, Universit?tsstra?e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: dietmar.lippold at informatik.uni-stuttgart.de
+
+
+

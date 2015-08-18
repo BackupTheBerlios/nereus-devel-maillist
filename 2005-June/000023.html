@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Nereus-devel] Fehler in Scenario und Agenten
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/nereus-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20in%20Scenario%20und%20Agenten&In-Reply-To=%3C200506151005.MAA09297%40isis.informatik.uni-stuttgart.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000024.html">
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Nereus-devel] Fehler in Scenario und Agenten</H1>
+    <B>Dietmar Lippold</B> 
+    <A HREF="mailto:nereus-devel%40lists.berlios.de?Subject=Re%3A%20%5BNereus-devel%5D%20Fehler%20in%20Scenario%20und%20Agenten&In-Reply-To=%3C200506151005.MAA09297%40isis.informatik.uni-stuttgart.de%3E"
+       TITLE="[Nereus-devel] Fehler in Scenario und Agenten">dietmar.lippold at informatik.uni-stuttgart.de
+       </A><BR>
+    <I>Wed Jun 15 12:05:17 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000024.html">[Nereus-devel] Re: Flackern abgestellt (war: Test misslungen)
+</A></li>
+        <LI>Next message: <A HREF="000025.html">[Nereus-devel] Start aus dem Arbeitsverzeichnis
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo,
+
+ich habe gerade folgende Ausgabe auf Client-Seite erhalten. 
+
+&gt;&gt;&gt;<i>
+</I>Neue Runde Nr.: 47
+2: alter MODUS  Desire: 3 Intention: 17
+2: neuer MODUS  Desire: 3 Intention: 14
+2: Desire Ziel (5 / 2)
+2: tanke (4 / 4)
+3: fliege nach (3, 4 )
+
+4: Die Biene selbst
+4: Rundennummer:  47
+4: Zustand:  fliegend
+4: Position:  4 , 4
+4: geladene Nektarmenge:  100
+4: geladene Honigmenge:  24
+4: abgeliferte Nektarmenge: 300
+4: alter MODUS  Desire: 3 Intention: 11
+
+1: Die Biene selbst
+1: Rundennummer:  47
+1: Zustand:  fliegend
+1: Position:  6 , 4
+1: geladene Nektarmenge:  0
+1: geladene Honigmenge:  88
+1: abgeliferte Nektarmenge: 400
+1: alter MODUS  Desire: 3 Intention: 11
+1: neuer MODUS  Desire: 3 Intention: 12
+1: lande (6 / 4)
+4: neuer MODUS  Desire: 3 Intention: 14
+4: lande (4 / 4)
+
+Neue Runde Nr.: 48
+2: alter MODUS  Desire: 3 Intention: 14
+2: sofortNektarAbliefern 
+2: neuer MODUS  Desire: 3 Intention: 14
+2: Desire Ziel (5 / 2)
+2: alter MODUS  Desire: 3 Intention: 14
+2: neuer MODUS  Desire: 3 Intention: 11
+2: Desire Ziel (5 / 2)
+2: starte (4 / 4)
+3: fliege nach (3, 1 )
+&lt;&lt;&lt;
+
+Wie man sieht, fliegt die Biene 3 von Feld (3, 4) nach (3, 1) und kann
+das tats&#228;chlich auch (sie springt auf der Karte). Es ist also
+anscheinend sowohl ein Fehler in der Biene (da&#223; sie das m&#246;chte) wie auch
+im Scenario (da&#223; es das zul&#228;st). Jeder von uns, der Zeit hat, sollte
+sich das mal anschauen. Welche Art von Agent das war, kann ich im Moment
+aber nicht sagen. Ich vermute es war der UnkooperativeBDIAgent.
+
+   Tschau
+    Dietmar
+
+-- 
+Dietmar Lippold, Institut IS, Universit&#228;t Stuttgart
+Raum 1.461, Universit&#228;tsstra&#223;e 38,  70569 Stuttgart
+Tel.: 0711 / 7816 - 435;     Fax: 0711 / 7816 - 340
+E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/nereus-devel">dietmar.lippold at informatik.uni-stuttgart.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000024.html">[Nereus-devel] Re: Flackern abgestellt (war: Test misslungen)
+</A></li>
+	<LI>Next message: <A HREF="000025.html">[Nereus-devel] Start aus dem Arbeitsverzeichnis
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/nereus-devel">More information about the Nereus-devel
+mailing list</a><br>
+</body></html>
